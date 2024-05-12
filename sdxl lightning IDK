@@ -1,0 +1,17 @@
+// Find the input element by its class
+var inputElement = document.querySelector('input[type="number"]');
+
+// Check if inputElement is found
+if (inputElement) {
+    // Create a function to increment the value of the input element and dispatch input event
+    function incrementAndDispatch() {
+        inputElement.stepUp();
+        inputElement.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    // Call the function initially
+    incrementAndDispatch();
+
+    // Set interval to call the function every second (100 milliseconds)
+    setInterval(incrementAndDispatch, 1000);
+}
