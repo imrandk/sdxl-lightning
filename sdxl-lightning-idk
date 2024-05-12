@@ -1,7 +1,3 @@
-/*
- * Code 1 
- */
-
 // Find the input element by its class
 var inputElement = document.querySelector('input[type="number"]');
 
@@ -19,12 +15,6 @@ if (inputElement) {
     // Set interval to call the function every second (10 milliseconds)
     setInterval(incrementAndDispatch, 100);
 }
-
-
-/*
- * Code 2
- */
-
 
 
 // Function to download all images within the specified area
