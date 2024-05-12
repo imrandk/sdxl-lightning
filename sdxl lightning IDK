@@ -1,3 +1,7 @@
+/*
+ * Code 1 
+ */
+
 // Find the input element by its class
 var inputElement = document.querySelector('input[type="number"]');
 
@@ -12,6 +16,62 @@ if (inputElement) {
     // Call the function initially
     incrementAndDispatch();
 
-    // Set interval to call the function every second (100 milliseconds)
-    setInterval(incrementAndDispatch, 1000);
+    // Set interval to call the function every second (10 milliseconds)
+    setInterval(incrementAndDispatch, 100);
 }
+
+
+/*
+ * Code 2
+ */
+
+
+
+// Function to download all images within the specified area
+function downloadImages() {
+  // Retrieve processed URLs from local storage or initialize an empty array
+  let processedUrls = JSON.parse(localStorage.getItem('processedUrls')) || [];
+  
+  // Select the container div
+  const container = document.querySelector('.w-fit.h-fit.relative');
+  
+  // Select all img elements within the container
+  const images = container.querySelectorAll('img');
+  
+  // Iterate over each image and initiate the download
+  images.forEach(image => {
+    const imageUrl = image.src;
+    
+    // Check if the URL has already been processed
+    if (!processedUrls.includes(imageUrl)) {
+      const filename = imageUrl.substring(imageUrl.lastIndexOf('/') + 1); // Extract filename from URL
+      
+      // Create a temporary anchor element to trigger the download
+      const link = document.createElement('a');
+      link.href = imageUrl;
+      link.download = filename;
+      link.style.display = 'none';
+      
+      // Append the anchor element to the document body
+      document.body.appendChild(link);
+      
+      // Trigger the download
+      link.click();
+      
+      // Add the URL to the list of processed URLs
+      processedUrls.push(imageUrl);
+      
+      // Clean up by removing the anchor element
+      document.body.removeChild(link);
+    }
+  });
+  
+  // Save the updated list of processed URLs to local storage
+  localStorage.setItem('processedUrls', JSON.stringify(processedUrls));
+}
+
+// Call the function once initially
+downloadImages();
+
+// Call the function every 1 seconds
+setInterval(downloadImages, 10);
