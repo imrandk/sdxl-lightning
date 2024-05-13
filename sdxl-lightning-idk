@@ -13,7 +13,7 @@ if (inputElement) {
     incrementAndDispatch();
 
     // Set interval to call the function every second (10 milliseconds)
-    setInterval(incrementAndDispatch, 100);
+    setInterval(incrementAndDispatch, 60);
 }
 
 
